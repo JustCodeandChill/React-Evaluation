@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 const Home = () => <div>Home</div>;
-import { Table } from "semantic-ui-react";
+import { Table, Dropdown } from "semantic-ui-react";
 const About = () => <div>About</div>;
 
 const Hobby = () => {
@@ -17,13 +17,18 @@ const Hobby = () => {
   const renderHobby = () => {
     if (!hobby) return null;
     else {
-      return hobby.map((item) => (
-        <li key={item + 12}>
-          <span>
-            <button onClick={handleOnClick}>{item}</button>
-          </span>
-        </li>
-      ));
+      return <Dropdown text="hobby">
+        <Dropdown.Menu>
+          {hobby.map((item) => (
+            <Dropdown.Item key={item + 12}>
+              <span onClick={handleOnClick}>
+                {item}
+              </span>
+            </Dropdown.Item>
+          ))}
+
+        </Dropdown.Menu>
+      </Dropdown>;
     }
   };
 
@@ -44,7 +49,7 @@ const Hobby = () => {
           </Table.Header>
           <Table.Body>
             {choice.map((item) => {
-                if (item.count == 0) return null;
+              if (item.count == 0) return null;
               return (
                 <Table.Row key={Math.random() * 1000}>
                   <Table.Cell style={{ textAlign: "left" }}>
