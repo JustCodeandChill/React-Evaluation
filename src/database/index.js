@@ -23,7 +23,6 @@ const getUniqueHobbies = () => {
     let hobbies = [];
     const hobbiesObj = db.hobbiesOfUserByUsername
     for (const key in hobbiesObj) {
-        console.log(`${key}: ${db.hobbiesOfUserByUsername[key]}`);
         hobbiesObj[key].map(hobby => hobbies.push(hobby))
     }
     hobbies = _.uniqWith(hobbies, _.isEqual);
@@ -40,11 +39,52 @@ const getHobbies = () => {
 
 const getListOfAgesOfUsersWith = (hobby) => {
   const dataAccessMethod = () => {
-    // fill me in :) should return an arry of age count based on hobby.
-    return [
-      { age: 18, count: 2 },
-      { age: 12, count: 1 },
-    ];
+    //  console.log(finished hobbies API);
+    // create an object with age key 
+    const users = db.usersById;
+    const usersHobbies = db.hobbiesOfUserByUsername;
+    const data = [];
+    for (const key in users) {
+        let value = users[key];
+        data.push(value)
+    }
+
+    // init real obejct
+    let data2 = [];
+    const unique = [...new Set(data.map(item => item.age))];
+    unique.map((item) => data2.push({age:item, count: 0}));
+
+    for (let key in usersHobbies) {
+        let name = key;
+
+        let containHobby = false;
+        for (let j = 0 ; j < usersHobbies[key].length; j++) {
+
+            if ( usersHobbies[key][j] == hobby) {
+                containHobby = true;
+                break
+            }
+        }
+
+        // using name Find the age of that person
+        if (containHobby) {
+            let temp;
+            for (let key2 in users) {
+                if (users[key2].username == name) {
+                    temp = users[key2];
+                    break;
+                }
+            }
+            let tempAge = temp.age;
+           for (let k = 0; k < data2.length; k++) {
+               if (data2[k].age == tempAge) {
+                   data2[k].count++;
+               }
+           }
+        }
+
+    }
+    return data2;
   };
   return mockDBCall(dataAccessMethod);
 };
