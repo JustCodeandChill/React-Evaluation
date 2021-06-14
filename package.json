@@ -4,9 +4,10 @@
   "description": "coding challenge",
   "main": "./src/index.js",
   "scripts": {
+    "preinstall":"cd $(pwd)",
     "start": "node ./src/index.js",
     "dev:server": "nodemon ./src/index.js",
-    "dev:client": "echo fill this in for the client dev env script"
+    "dev:client": "npm run start --prefix src/client"
   },
   "author": "Antra-react",
   "dependencies": {
