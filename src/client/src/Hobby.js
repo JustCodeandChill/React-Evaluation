@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-const Home = () => <div>Home</div>;
 import { Table, Dropdown } from "semantic-ui-react";
-const About = () => <div>About</div>;
 
 const Hobby = () => {
   const [hobby, setHobby] = useState([]);
@@ -17,18 +15,17 @@ const Hobby = () => {
   const renderHobby = () => {
     if (!hobby) return null;
     else {
-      return <Dropdown text="hobby">
-        <Dropdown.Menu>
-          {hobby.map((item) => (
-            <Dropdown.Item key={item + Math.random()* 1000}>
-              <span onClick={handleOnClick}>
-                {item}
-              </span>
-            </Dropdown.Item>
-          ))}
-
-        </Dropdown.Menu>
-      </Dropdown>;
+      return (
+        <Dropdown text="hobby">
+          <Dropdown.Menu>
+            {hobby.map((item) => (
+              <Dropdown.Item key={item + Math.random() * 1000}>
+                <span onClick={handleOnClick}>{item}</span>
+              </Dropdown.Item>
+            ))}
+          </Dropdown.Menu>
+        </Dropdown>
+      );
     }
   };
 
