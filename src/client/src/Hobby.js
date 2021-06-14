@@ -20,7 +20,7 @@ const Hobby = () => {
       return <Dropdown text="hobby">
         <Dropdown.Menu>
           {hobby.map((item) => (
-            <Dropdown.Item key={item + 12}>
+            <Dropdown.Item key={item + Math.random()* 1000}>
               <span onClick={handleOnClick}>
                 {item}
               </span>
