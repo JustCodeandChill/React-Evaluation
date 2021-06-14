@@ -17,8 +17,6 @@ const Dummy = () => {
 
     return (
         <div>
-            <h1>Helloworld React!</h1>
-            <h2>Add Webpack</h2>
             <App />
         </div>
     )
