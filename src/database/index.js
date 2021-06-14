@@ -31,7 +31,6 @@ const getUniqueHobbies = () => {
 
 const getHobbies = () => {
   const dataAccessMethod = () => {
-    // fill me in :) should return an array of hobbies without duplicate value.
     return getUniqueHobbies();
   };
   return mockDBCall(dataAccessMethod);
@@ -39,7 +38,6 @@ const getHobbies = () => {
 
 const getListOfAgesOfUsersWith = (hobby) => {
   const dataAccessMethod = () => {
-    //  console.log(finished hobbies API);
     // create an object with age key 
     const users = db.usersById;
     const usersHobbies = db.hobbiesOfUserByUsername;
